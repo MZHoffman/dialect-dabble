@@ -2,7 +2,6 @@ import { Configuration, OpenAIApi } from 'openai'
 import { useState } from 'react'
 import TranslationForm from './components/TranslationForm'
 import styles from './App.module.css'
-
 const App = () => {
   const API_KEY = import.meta.env.VITE_OPEN_AI_API_KEY
   const configuration = new Configuration({
@@ -11,8 +10,10 @@ const App = () => {
   const openai = new OpenAIApi(configuration)
 
   const [translation, setTranslation] = useState('')
+  const [isLoading, seIsLoading] = useState(false)
 
   const handleTranslation = async (inputText, dialect) => {
+    seIsLoading(true)
     console.log(inputText, dialect)
 
     const response = await openai.createChatCompletion({
@@ -27,6 +28,7 @@ const App = () => {
     })
     console.log(response)
     setTranslation(response.data.choices[0].message.content)
+    seIsLoading(false)
   }
 
   return (
@@ -34,7 +36,9 @@ const App = () => {
       <div className={styles.mainContainer}>
         <TranslationForm onTranslate={handleTranslation} />
         <div className={styles.translationContainer}>
-          <div className={styles.translationResult}>{translation}</div>
+          <div className={styles.translationResult}>
+            {isLoading ? 'Translation is loading' : translation}
+          </div>
         </div>
       </div>
     </>
