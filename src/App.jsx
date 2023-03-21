@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from 'openai'
-import { useState, useEffect } from 'react'
-import TranslationForm from './components/Form'
-import './App.css'
+import { useState } from 'react'
+import TranslationForm from './components/TranslationForm'
+import styles from './App.module.css'
 
 const App = () => {
   const API_KEY = import.meta.env.VITE_OPEN_AI_API_KEY
@@ -13,6 +13,8 @@ const App = () => {
   const [translation, setTranslation] = useState('')
 
   const handleTranslation = async (inputText, dialect) => {
+    console.log(inputText, dialect)
+
     const response = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
       messages: [
@@ -23,13 +25,16 @@ const App = () => {
       ],
       temperature: 0,
     })
+    console.log(response)
     setTranslation(response.data.choices[0].message.content)
   }
 
   return (
     <>
       <TranslationForm onTranslate={handleTranslation} />
-      <div>{translation}</div>
+      <div className={styles.translationContainer}>
+        <div className={styles.translationResult}>{translation}</div>
+      </div>
     </>
   )
 }

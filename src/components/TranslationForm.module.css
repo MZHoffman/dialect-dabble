@@ -1,0 +1,66 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* add vertical alignment */
+  width: 50%;
+  margin: 0 auto;
+  height: 100vh; /* make the form take up the full height of the viewport */
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* align text to the left */
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.textInputLabel {
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 10px 0 10px 0;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 10px;
+}
+
+select {
+  width: 100%; /* make the dropdown fill the width of the container */
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+button[type='submit'] {
+  width: 100%; /* make the button fill the width of the container */
+  background-color: #007aff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button[type='submit']:hover {
+  background-color: #0062cc;
+}
+
+.selectButtonContainer {
+  display: flex;
+  width: 100%;
+}
