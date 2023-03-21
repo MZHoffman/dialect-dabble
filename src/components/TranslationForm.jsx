@@ -21,14 +21,12 @@ const TranslationForm = ({ onTranslate }) => {
   return (
     <form onSubmit={handleSubmit} className={styles.formContainer}>
       <div className={styles.inputContainer}>
-        <label className={styles.textInputLabel} htmlFor='inputText'>
-          Enter text to translate
-        </label>
         <input
           id='inputText'
           type='text'
           value={inputText}
           onChange={handleInputChange}
+          placeholder='Enter text to translate'
         />
       </div>
 

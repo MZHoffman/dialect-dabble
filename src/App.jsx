@@ -31,9 +31,11 @@ const App = () => {
 
   return (
     <>
-      <TranslationForm onTranslate={handleTranslation} />
-      <div className={styles.translationContainer}>
-        <div className={styles.translationResult}>{translation}</div>
+      <div className={styles.mainContainer}>
+        <TranslationForm onTranslate={handleTranslation} />
+        <div className={styles.translationContainer}>
+          <div className={styles.translationResult}>{translation}</div>
+        </div>
       </div>
     </>
   )
