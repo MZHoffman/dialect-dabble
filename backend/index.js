@@ -17,27 +17,24 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration)
 
-app.listen('3081', () => console.log('test'))
-
-app.get('/', (request, response) => {
-  response.send('Hello World!')
-})
+app.listen('3081', () => console.log('Listening on port 3081'))
 
 app.post('/', async (request, response) => {
-  const { message } = request.body
+  const { message, dialect } = request.body
 
   try {
-    const response = await openai.createChatCompletion({
+    const AIResponse = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
       messages: [
         {
           role: 'user',
-          content: `translate this to ${dialect} (don't write anything else but trnslation): ${inputText}`,
+          content: `translate this to ${dialect} (don't write anything else but trnslation): ${message}`,
         },
       ],
       temperature: 0,
     })
-    response.json({ message: response.data.choices[0].message.content })
+    const data = AIResponse.data.choices[0].message.content
+    return response.send({ data })
   } catch (error) {
     console.log(error)
     response.send(error).status(400)

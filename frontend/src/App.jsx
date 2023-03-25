@@ -1,34 +1,29 @@
-import { Configuration, OpenAIApi } from 'openai'
 import { useState } from 'react'
 import TranslationForm from './components/TranslationForm'
 import styles from './App.module.css'
 const App = () => {
-  const API_KEY = import.meta.env.VITE_OPEN_AI_API_KEY
-  const configuration = new Configuration({
-    apiKey: API_KEY,
-  })
-  const openai = new OpenAIApi(configuration)
-
   const [translation, setTranslation] = useState('')
-  const [isLoading, seIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleTranslation = async (inputText, dialect) => {
-    seIsLoading(true)
-    console.log(inputText, dialect)
-
-    const response = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      messages: [
-        {
-          role: 'user',
-          content: `translate this to ${dialect} (don't write anything else but trnslation): ${inputText}`,
+    setIsLoading(true)
+    try {
+      const response = await fetch('http://localhost:3081/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      ],
-      temperature: 0,
-    })
-    console.log(response)
-    setTranslation(response.data.choices[0].message.content)
-    seIsLoading(false)
+        body: JSON.stringify({
+          message: inputText,
+          dialect: dialect,
+        }),
+      })
+      const data = await response.json()
+      setTranslation(data.data)
+    } catch (error) {
+      console.log(error)
+    }
+    setIsLoading(false)
   }
 
   return (
