@@ -41,8 +41,11 @@ export default function Home() {
             zIndex: 1,
           }}
         >
-          <TranslationForm onTranslate={handleTranslation} />
-          <Box mt={2}>{isLoading ? 'Translation is loading' : translation}</Box>
+          <TranslationForm
+            onTranslate={handleTranslation}
+            loading={isLoading}
+          />
+          <Box mt={2}>{translation}</Box>
         </Box>
       </Container>
     </>

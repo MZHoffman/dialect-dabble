@@ -7,9 +7,10 @@ import TextField from '@mui/material/TextField'
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
+import { LoadingButton } from '@mui/lab'
 import { height } from '@mui/system'
 
-const TranslationForm = ({ onTranslate }) => {
+const TranslationForm = ({ onTranslate, loading }) => {
   const [inputText, setInputText] = useState('')
   const [dialect, setDialect] = useState('Cockney')
 
@@ -57,14 +58,17 @@ const TranslationForm = ({ onTranslate }) => {
         </Select>
       </FormControl>
 
-      <Button
+      <LoadingButton
         sx={{ width: '100%', height: '100%' }}
         type='submit'
         variant='contained'
         color='primary'
+        loadingPosition='start'
+        loading={loading}
+        //loadingIndicator='Translation Loading…'
       >
-        Translate
-      </Button>
+        <span>Translate</span>
+      </LoadingButton>
     </form>
   )
 }
