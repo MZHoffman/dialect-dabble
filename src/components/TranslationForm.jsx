@@ -1,5 +1,13 @@
 import React, { useState } from 'react'
-import styles from '@/styles/TranslationForm.module.css'
+import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import FormControl from '@mui/material/FormControl'
+import TextField from '@mui/material/TextField'
+import InputLabel from '@mui/material/InputLabel'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+import { height } from '@mui/system'
 
 const TranslationForm = ({ onTranslate }) => {
   const [inputText, setInputText] = useState('')
@@ -19,31 +27,44 @@ const TranslationForm = ({ onTranslate }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={styles.formContainer}>
-      <div className={styles.inputContainer}>
-        <input
-          id='inputText'
-          type='text'
+    <form onSubmit={handleSubmit}>
+      <FormControl fullWidth margin='normal'>
+        <TextField
+          id='text-to-translate'
+          label='Text to Translate'
+          multiline
+          rows={4}
           value={inputText}
           onChange={handleInputChange}
-          placeholder='Enter text to translate'
         />
-      </div>
+      </FormControl>
 
-      <div className={styles.inputContainer}>
-        <label htmlFor='dialect'>Select Dialect</label>
-        <div className={styles.selectButtonContainer}>
-          <select id='dialect' value={dialect} onChange={handleDialectChange}>
-            <option value='Cockney'>Cockney</option>
-            <option value='Middle English'>Ye Olde English</option>
-            <option value='American English'>American English</option>
-            <option value='British English'>British English</option>
-            <option value='Posh English'>Posh English</option>
-            <option value='Australian English'>Australian English</option>
-          </select>
-          <button type='submit'>Translate</button>
-        </div>
-      </div>
+      <FormControl fullWidth margin='normal'>
+        <InputLabel id='dialect-select'>Dialect</InputLabel>
+        <Select
+          labelId='dialect-select'
+          id='dialect'
+          label='Dialect'
+          value={dialect}
+          onChange={handleDialectChange}
+        >
+          <MenuItem value='Cockney'>Cockney</MenuItem>
+          <MenuItem value='Ye Olde English'>Ye Olde English</MenuItem>
+          <MenuItem value='American English'>American English</MenuItem>
+          <MenuItem value='British English'>British English</MenuItem>
+          <MenuItem value='Posh English'>Posh English</MenuItem>
+          <MenuItem value='Australian English'>Australian English</MenuItem>
+        </Select>
+      </FormControl>
+
+      <Button
+        sx={{ width: '100%', height: '100%' }}
+        type='submit'
+        variant='contained'
+        color='primary'
+      >
+        Translate
+      </Button>
     </form>
   )
 }
