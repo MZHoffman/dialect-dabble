@@ -21,13 +21,6 @@ export default function Home() {
   return (
     <>
       <CssBaseline />
-      <Box
-        sx={{
-          width: '100%',
-          height: '100%',
-          position: 'fixed',
-        }}
-      />
       <Container maxWidth='sm'>
         <Box
           sx={{
@@ -45,6 +38,7 @@ export default function Home() {
             onTranslate={handleTranslation}
             loading={isLoading}
           />
+
           <Box mt={2}>{translation}</Box>
         </Box>
       </Container>

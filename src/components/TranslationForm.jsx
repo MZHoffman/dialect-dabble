@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import Button from '@mui/material/Button'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import FormControl from '@mui/material/FormControl'
-import TextField from '@mui/material/TextField'
-import InputLabel from '@mui/material/InputLabel'
-import Select from '@mui/material/Select'
-import MenuItem from '@mui/material/MenuItem'
+import {
+  Box,
+  FormControl,
+  TextField,
+  InputLabel,
+  Select,
+  MenuItem,
+} from '@mui/material'
 import { LoadingButton } from '@mui/lab'
-import { height } from '@mui/system'
 
 const TranslationForm = ({ onTranslate, loading }) => {
   const [inputText, setInputText] = useState('')
@@ -39,7 +38,6 @@ const TranslationForm = ({ onTranslate, loading }) => {
           onChange={handleInputChange}
         />
       </FormControl>
-
       <FormControl fullWidth sx={{ width: '100%' }} margin='normal'>
         <InputLabel id='dialect-select'>Dialect</InputLabel>
         <Select
@@ -67,7 +65,7 @@ const TranslationForm = ({ onTranslate, loading }) => {
         loadingPosition='start'
         loading={loading}
       >
-        <span>Translate</span>
+        Translate
       </LoadingButton>
     </Box>
   )
