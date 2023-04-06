@@ -28,7 +28,7 @@ const TranslationForm = ({ onTranslate, loading }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Box component='form' sx={{ width: '100%' }} onSubmit={handleSubmit}>
       <FormControl fullWidth margin='normal'>
         <TextField
           id='text-to-translate'
@@ -40,7 +40,7 @@ const TranslationForm = ({ onTranslate, loading }) => {
         />
       </FormControl>
 
-      <FormControl fullWidth margin='normal'>
+      <FormControl fullWidth sx={{ width: '100%' }} margin='normal'>
         <InputLabel id='dialect-select'>Dialect</InputLabel>
         <Select
           labelId='dialect-select'
@@ -48,6 +48,7 @@ const TranslationForm = ({ onTranslate, loading }) => {
           label='Dialect'
           value={dialect}
           onChange={handleDialectChange}
+          sx={{ width: '100%' }}
         >
           <MenuItem value='Cockney'>Cockney</MenuItem>
           <MenuItem value='Ye Olde English'>Ye Olde English</MenuItem>
@@ -59,17 +60,16 @@ const TranslationForm = ({ onTranslate, loading }) => {
       </FormControl>
 
       <LoadingButton
-        sx={{ width: '100%', height: '100%' }}
+        sx={{ width: '100%' }}
         type='submit'
         variant='contained'
         color='primary'
         loadingPosition='start'
         loading={loading}
-        //loadingIndicator='Translation Loading…'
       >
         <span>Translate</span>
       </LoadingButton>
-    </form>
+    </Box>
   )
 }
 
